@@ -1,6 +1,2 @@
-/my-journal
-  └── index.html
-  └── entries
-        ├── january-01.html
-        ├── january-02.html
-        └── more files...
+<li><a href="entries/january-01.html">January 1</a></li>
+    <li><a href="entries/january-02.html">January 2</a></li>
