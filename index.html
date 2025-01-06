@@ -7,18 +7,27 @@
 </head>
 <body>
 <script>
-  var password = prompt("Enter the password:");
-  if (password !== "mypassword") {
-    document.body.innerHTML = "Access denied.";
+  // Check if the user is logged in (has the 'loggedIn' flag in sessionStorage)
+  if (!sessionStorage.getItem("loggedIn")) {
+    var password = prompt("Enter the password:");
+    if (password === "mypassword") {
+      sessionStorage.setItem("loggedIn", "true");  // Store the login state in sessionStorage
+    } else {
+      document.body.innerHTML = "Access denied.";
+      return; // Stop execution of the rest of the script if access is denied
+    }
   }
+
+  // Only show the journal content if logged in
+  document.body.innerHTML += `
+    <h1>Welcome to My Journal</h1>
+    <ul>
+      <li><a href="entries/january-01.html">January 1</a></li>
+      <li><a href="entries/january-02.html">January 2</a></li>
+      <!-- Add more links for each journal entry -->
+    </ul>
+  `;
 </script>
 
-  <h1>Welcome to My Journal</h1>
-  <ul>
-    <li><a href="entries/january-01.html">January 1</a></li>
-    <li><a href="entries/january-02.html">January 2</a></li>
-    <!-- Add more links for each journal entry -->
-  </ul>
 </body>
 </html>
-
