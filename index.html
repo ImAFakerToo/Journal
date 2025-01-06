@@ -6,20 +6,27 @@
   <title>My Private Journal</title>
 </head>
 <body>
+
 <script>
-  // Check if the user is logged in (has the 'loggedIn' flag in sessionStorage)
-  if (!sessionStorage.getItem("loggedIn")) {
-    var password = prompt("Enter the password:");
-    if (password === "mypassword") {
-      sessionStorage.setItem("loggedIn", "true");  // Store the login state in sessionStorage
+  // This function checks if the user is logged in
+  function checkLogin() {
+    // If not logged in, ask for password
+    if (!sessionStorage.getItem("loggedIn")) {
+      var password = prompt("Enter the password:");
+      if (password === "mypassword") {
+        sessionStorage.setItem("loggedIn", "true");  // Store the login state
+        loadContent();  // Load the journal content after successful login
+      } else {
+        document.body.innerHTML = "Access denied.";  // Deny access if password is wrong
+      }
     } else {
-      document.body.innerHTML = "Access denied.";
-      return; // Stop execution if access is denied
+      // If already logged in, load the content
+      loadContent();
     }
   }
 
-  // Only show the journal content if logged in
-  if (sessionStorage.getItem("loggedIn")) {
+  // This function loads the journal content
+  function loadContent() {
     document.body.innerHTML = `
       <h1>Welcome to My Journal</h1>
       <ul>
@@ -29,8 +36,10 @@
       </ul>
     `;
   }
+
+  // Run the login check on page load
+  checkLogin();
 </script>
 
 </body>
 </html>
-
