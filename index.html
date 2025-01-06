@@ -15,7 +15,7 @@
       var password = prompt("Enter the password:");
       if (password === "mypassword") {
         sessionStorage.setItem("loggedIn", "true");  // Store the login state
-        loadContent();  // Load the journal content after successful login
+        location.reload();  // Reload the page to apply session storage and show content
       } else {
         document.body.innerHTML = "Access denied.";  // Deny access if password is wrong
       }
@@ -43,3 +43,4 @@
 
 </body>
 </html>
+
